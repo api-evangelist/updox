@@ -1,0 +1,95 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Updox
+providerId: updox
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Healthcare
+- Patient Engagement
+- Telehealth
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Updox spend. Updox (part of EverCommerce, NASDAQ - EVCM) is a
+  subscription SaaS platform billed monthly by practice size and capability mix,
+  with tier allowances on faxes, telehealth sessions, appointment reminders, and
+  broadcast messages. The public API is a partner integration surface enabled on
+  top of that subscription rather than a separately metered consumption API, so
+  the dominant cost driver is the subscription tier and overage against its
+  allowances, not per-API-call charges. Exact rates are quote-based and not
+  reconciled here.
+notes: >-
+  Because pricing is quote-based and tier allowances vary, model Updox spend from
+  your negotiated subscription plus any overage on capped resources (fax pages,
+  telehealth sessions, reminders, broadcast messages). Verify current rates with
+  Updox sales.
+sources:
+- https://www.updox.com/tools/updox-pricing-calculator/
+- https://www.updox.com/platform-overview/
+- https://help.updox.com/help/public-api
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Updox
+serviceCategory: Healthcare Communication and Patient Engagement
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Updox
+  ServiceCategory: Healthcare Communication and Patient Engagement
+  ProviderName: Updox
+  PublisherName: Updox
+  InvoiceIssuerName: EverCommerce
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: provider_seats
+  description: Per-provider/user subscription seats on the plan.
+  unit: seats
+  aggregation: sum
+  dimensions:
+  - account
+- name: fax_pages
+  description: Electronic fax pages sent/received against the tier allowance.
+  unit: pages
+  aggregation: sum
+  dimensions:
+  - account
+- name: telehealth_sessions
+  description: Telehealth video sessions against the tier allowance.
+  unit: sessions
+  aggregation: sum
+  dimensions:
+  - account
+- name: reminders
+  description: Appointment reminders and broadcast messages against the tier allowance.
+  unit: messages
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track usage of capped resources (fax pages, telehealth sessions, reminders, broadcast messages) against the plan allowance to anticipate overage.
+- name: Allocation
+  description: Map Updox seats and capability usage to practices, locations, or departments.
+- name: Optimization
+  description: Right-size the subscription tier to actual volume; consolidate capabilities that would otherwise be bought from separate vendors (fax, telehealth, reminders).
+- name: Accountability
+  description: Assign an owner for the Updox contract and review monthly usage vs. allowance and renewal terms.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

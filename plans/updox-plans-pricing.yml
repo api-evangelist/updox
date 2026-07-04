@@ -1,0 +1,125 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Updox
+providerId: updox
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Healthcare
+- Patient Engagement
+- Telehealth
+- Electronic Fax
+- Plans
+description: >-
+  Updox is sold as a subscription SaaS platform (part of EverCommerce), priced
+  by practice size and the mix of capabilities (secure messaging, electronic
+  fax, reminders, telehealth video, forms, document management). Updox does not
+  publish "buy now" list pricing; a public pricing calculator and a sales
+  contact drive quotes. Third-party trackers report tiers roughly spanning a
+  small/solo tier (about $49-$119 per provider/month), mid tiers with capped
+  monthly allowances (faxes, telehealth sessions, reminders, broadcast
+  messages), and a custom enterprise tier for larger practices and health
+  systems (into the thousands per month). API/integration access is provisioned
+  to partners rather than sold as a standalone metered API. Exact current rates
+  are not reconciled here.
+notes: >-
+  The public API itself is not separately priced as a consumption API; it is a
+  partner integration surface enabled on top of an Updox subscription. Verify
+  current tiers, allowances, and the API Acceptable Use Policy with Updox sales.
+sources:
+- https://www.updox.com/tools/updox-pricing-calculator/
+- https://www.updox.com/platform-overview/
+- https://help.updox.com/help/public-api
+plans:
+- id: updox-solo
+  name: Solo / Essential
+  type: subscription
+  description: >-
+    Entry tier for solo practitioners and small practices - core secure
+    messaging, appointment reminders, and document management. Reported around
+    $49-$119 per provider/month.
+  entries:
+  - label: Per Provider Subscription
+    name: solo_subscription
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: US
+    unit: 1
+    price: reported ~$49-$119 per provider/month (contact sales)
+    userMultiplied: true
+  elements:
+  - name: Secure Messaging
+  - name: Appointment Reminders
+  - name: Document Management
+- id: updox-growth
+  name: Growth
+  type: subscription
+  description: >-
+    Mid tier with capped monthly allowances (reported around 3,500 faxes, 250
+    telehealth sessions, 850 appointment reminders) plus broadcast messaging.
+  entries:
+  - label: Practice Subscription
+    name: growth_subscription
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: US
+    unit: 1
+    price: quote-based (contact sales)
+    userMultiplied: false
+  elements:
+  - name: Electronic Fax Allowance
+  - name: Telehealth Video Sessions
+  - name: Appointment Reminders
+  - name: Broadcast Messaging
+- id: updox-advanced
+  name: Advanced
+  type: subscription
+  description: >-
+    Tier for mid-sized practices with higher allowances (e.g. broadcast messages
+    reported doubling from 500 to 1,000) and the fuller capability set.
+  entries:
+  - label: Practice Subscription
+    name: advanced_subscription
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: US
+    unit: 1
+    price: quote-based (contact sales)
+    userMultiplied: false
+  elements:
+  - name: Higher Allowances
+  - name: Forms
+  - name: Patient Portal
+- id: updox-enterprise
+  name: Enterprise / Custom
+  type: enterprise
+  description: >-
+    Custom pricing for larger practices, health systems, pharmacies, and EHR
+    partners, including partner API/integration access, SSO, and negotiated
+    volume terms. Contact Updox.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: US
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Partner API / Integration Access
+  - name: Custom Volume Pricing
+  - name: EHR / Pharmacy System Integration
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,103 @@
+aid: updox
+name: Updox
+review:
+  question: Does Updox expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-04'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Updox's own public/partner API surface is
+    request/response HTTP - a POST-based "IO" API (IO Docs explorer at
+    updoxqa.com/api/io) plus knowledge-base-documented functions. Where Updox
+    pushes events (inbound faxes, new secure conversations, form completions,
+    reminder responses, video call state, etc.) it does so with HTTP webhooks -
+    server-to-endpoint callbacks, not a persistent WebSocket. There is no
+    documented ws:// or wss:// endpoint on Updox's own API to model, so no
+    AsyncAPI channel document was created.
+findings:
+  summary: |
+    Updox does not publish a documented public WebSocket API. Updox is a
+    healthcare communication and patient engagement platform (part of
+    EverCommerce, NASDAQ - EVCM, since December 2020). It exposes a
+    partner-oriented public API: a POST-based "IO" API surfaced through an IO
+    Docs explorer (base https://updoxqa.com/api/io) with tiered application /
+    account / user authentication, plus a knowledge base at help.updox.com
+    documenting API functions and an eleven-area webhook catalog. Event
+    notifications are delivered via HTTP webhooks (Account Management, Direct
+    Messaging, Document Management, Faxing, Patient Management, Patient Portal,
+    Secure Conversation Management, Reminders, Video Chat, Forms). No realtime,
+    bidirectional, or streaming WebSocket endpoint is documented on Updox's own
+    API as of the review date.
+  accessModel: |
+    The API is publicly documented but partner-gated in practice. Access
+    requires an applicationId / applicationPassword issued by Updox (and, for
+    most actions, an accountId and userId), rather than open self-serve signup.
+    It is used chiefly by EHR, pharmacy management, and integration partners.
+    The reachable reference environment is the QA/IO Docs host updoxqa.com; the
+    production base is provisioned per partner.
+  endpointsModeled: |
+    Confirmed from the IO Docs explorer and knowledge base: the Ping health-check
+    actions (Ping, PingWithApplicationAuth, PingWithAccountAuth, PingWithAuth),
+    Address Book actions (AddressBookList incl. v1.1, AddressBookSearch,
+    ContactCreate), the Faxing poll functions (FaxOemPop, PopPDF), and Video Chat
+    VideoCallActions (SendInvite, retrieval). The remaining logical APIs in this
+    entry (Direct Messaging, Secure Conversation, Document Management, Patient
+    Management, Patient Portal, Reminders, Forms, and the balance of Account
+    Management) are modeled from Updox's documented functional areas and webhook
+    catalog rather than transcribed from a full public reference; the bundled
+    OpenAPI covers only the confirmed actions and is marked as modeled.
+  transports:
+    - protocol: REST/RPC (HTTP POST)
+      scheme: https
+      baseURL: https://updoxqa.com/api/io
+      documented: true
+      note: POST-based "IO" API with tiered application/account/user auth. IO Docs explorer at updoxqa.com/api/newio. Production base is provisioned per partner.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: HTTP callbacks across eleven functional areas (Account, Direct Messaging, Documents, Faxing, Patients, Patient Portal, Secure Conversations, Reminders, Video Chat, Forms). Server-to-endpoint HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Updox's public API reference or webhook docs as of the review date.
+  endpointsConfirmed:
+    - POST https://updoxqa.com/api/io/Ping
+    - POST https://updoxqa.com/api/io/PingWithApplicationAuth
+    - POST https://updoxqa.com/api/io/PingWithAccountAuth
+    - POST https://updoxqa.com/api/io/PingWithAuth
+    - POST https://updoxqa.com/api/io/AddressBookList
+    - POST https://updoxqa.com/api/io/AddressBookList/1.1
+    - POST https://updoxqa.com/api/io/AddressBookSearch
+    - POST https://updoxqa.com/api/io/ContactCreate
+    - POST https://updoxqa.com/api/io/FaxOemPop
+    - POST https://updoxqa.com/api/io/PopPDF
+    - POST https://updoxqa.com/api/io/VideoCallActions
+sources:
+  - url: https://help.updox.com/help/public-api
+    type: Documentation
+    note: Public API landing page; links the IO Docs explorer and lists the webhook areas and API functions.
+  - url: https://help.updox.com/help/api-usage
+    type: Documentation
+    note: API usage index - webhooks (11 areas), FaxOemPop, VideoCallActions, API Acceptable Use Policy.
+  - url: https://updoxqa.com/api/newio
+    type: APIReference
+    note: IO Docs explorer. Base https://updoxqa.com/api/io, all POST, tiered auth (Ping, AddressBook, etc.).
+  - url: https://help.updox.com/help/faxoempop
+    type: Documentation
+    note: FaxOemPop/PopPDF multifunction fax-retrieval poll; lastRetrievedFaxId marks handled until endOfQueue.
+  - url: https://help.updox.com/help/faxing-webhooks
+    type: Documentation
+    note: Faxing webhooks - HTTP callbacks for fax events, not WebSocket.
+  - url: https://investors.evercommerce.com/news-releases/news-release-details/evercommerce-acquires-updox-industry-leader-virtual-care-and/
+    type: PressRelease
+    note: EverCommerce acquired Updox (December 2020).
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Updox's own public API is
+    request/response HTTP POST (the IO API) and its event delivery is via HTTP
+    webhooks, neither of which is a server-push WebSocket transport. No AsyncAPI
+    document was created because there is no ws://wss:// channel on Updox's own
+    API to model.

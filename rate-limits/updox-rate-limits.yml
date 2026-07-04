@@ -1,0 +1,60 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Updox
+providerId: updox
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Healthcare
+- Secure Messaging
+- Electronic Fax
+- Rate Limiting
+- Quotas
+description: >-
+  Updox does not publish fixed numeric per-endpoint rate limits for its public
+  IO API. API access is partner-provisioned and governed by an API Acceptable
+  Use Policy rather than an open, self-serve quota page. In practice, usage is
+  shaped by subscription-tier allowances (monthly caps on faxes, telehealth
+  sessions, appointment reminders, and broadcast messages) rather than by a
+  documented requests-per-minute ceiling. The FaxOemPop / PopPDF retrieval
+  functions are self-throttling by design - they return one fax per call and
+  cap repeated redelivery of an unacknowledged fax at 10 retries until
+  lastRetrievedFaxId is supplied.
+notes: >-
+  No public throttling response code or per-minute limit is documented as of the
+  review date. Confirm partner-specific limits and the API Acceptable Use Policy
+  with Updox during onboarding.
+sources:
+- https://help.updox.com/help/public-api
+- https://help.updox.com/help/api-usage
+- https://help.updox.com/help/faxoempop
+responseCodes:
+  throttled: not published
+limits:
+- name: IO API Requests
+  scope: application
+  metric: requests
+  limit: not published
+  notes: No fixed numeric per-endpoint request-rate limit is documented for the IO API.
+- name: Fax Retrieval Redelivery
+  scope: account
+  metric: retries
+  limit: 10 retries per unacknowledged fax
+  notes: FaxOemPop/PopPDF re-return the same fax up to 10 times until lastRetrievedFaxId marks it handled.
+- name: Subscription Allowances
+  scope: account
+  metric: messages
+  limit: per plan
+  notes: Monthly caps on faxes, telehealth sessions, reminders, and broadcast messages are set by the subscription tier, not by an API rate limit.
+policies:
+- name: Acceptable Use Policy
+  description: API usage is governed by Updox's API Acceptable Use Policy, agreed to during partner onboarding.
+- name: Fax Acknowledgement
+  description: Clients must supply lastRetrievedFaxId on each poll so retrieved faxes are marked handled and the queue advances toward endOfQueue.
+- name: Backoff Strategy
+  description: Clients should poll on a reasonable interval and implement exponential backoff with jitter on errors.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
