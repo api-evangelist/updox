@@ -207,6 +207,8 @@ apis:
     IO Docs explorer; remaining account endpoints are modeled from the documented
     functional area.
 common:
+- type: DomainSecurity
+  url: security/updox-domain-security.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/updox
 - type: Website
