@@ -1,0 +1,102 @@
+openapi: 3.0.3
+info:
+  title: Updox IO API (Modeled) Address Book Faxing API
+  version: '1.0'
+  description: Modeled OpenAPI for the confirmed actions of the Updox "IO" API. Updox exposes a POST-based partner API surfaced through an IO Docs explorer (https://updoxqa.com/api/newio) with tiered application / account / user authentication. This document transcribes only the actions confirmed in the IO Docs explorer and knowledge base (Ping health checks, Address Book contacts, Faxing poll functions, and Video Chat actions); request/response bodies are modeled from the documented behavior, not a machine-readable Updox spec. Updox is part of EverCommerce (NASDAQ - EVCM).
+  contact:
+    name: Updox Support
+    url: https://www.updox.com/support/
+  x-modeled: true
+servers:
+- url: https://updoxqa.com/api/io
+  description: Updox IO Docs / QA reference host (production base is provisioned per partner)
+tags:
+- name: Faxing
+  description: Inbound electronic fax retrieval.
+paths:
+  /FaxOemPop:
+    post:
+      tags:
+      - Faxing
+      summary: Retrieve next inbound fax (PNG)
+      description: Multifunction poll. Reports whether inbound faxes are queued, returns the oldest unhandled fax image (PNG) in the response, and marks the prior fax handled via lastRetrievedFaxId. Repeat until endOfQueue is true.
+      operationId: faxOemPop
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaxPopRequest'
+      responses:
+        '200':
+          description: Fax payload or end-of-queue marker.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaxPopResponse'
+  /PopPDF:
+    post:
+      tags:
+      - Faxing
+      summary: Retrieve next inbound fax (PDF)
+      description: Same behavior and parameters as FaxOemPop, but returns the fax as a PDF.
+      operationId: popPdf
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaxPopRequest'
+      responses:
+        '200':
+          description: Fax payload or end-of-queue marker.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaxPopResponse'
+components:
+  schemas:
+    AccountAuth:
+      allOf:
+      - $ref: '#/components/schemas/ApplicationAuth'
+      - type: object
+        required:
+        - accountId
+        properties:
+          accountId:
+            type: string
+    FaxPopResponse:
+      type: object
+      properties:
+        faxId:
+          type: string
+        endOfQueue:
+          type: boolean
+          description: True when no more unhandled faxes remain.
+        contentType:
+          type: string
+          enum:
+          - image/png
+          - application/pdf
+        content:
+          type: string
+          format: byte
+          description: Base64-encoded fax image, present when a fax is available.
+    ApplicationAuth:
+      type: object
+      required:
+      - applicationId
+      - applicationPassword
+      properties:
+        applicationId:
+          type: string
+        applicationPassword:
+          type: string
+    FaxPopRequest:
+      allOf:
+      - $ref: '#/components/schemas/AccountAuth'
+      - type: object
+        properties:
+          lastRetrievedFaxId:
+            type: string
+            description: ID of the previously retrieved fax, marking it handled so the next unhandled fax is returned. Omit on the first call.

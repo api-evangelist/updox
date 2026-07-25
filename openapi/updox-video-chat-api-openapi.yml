@@ -1,0 +1,81 @@
+openapi: 3.0.3
+info:
+  title: Updox IO API (Modeled) Address Book Video Chat API
+  version: '1.0'
+  description: Modeled OpenAPI for the confirmed actions of the Updox "IO" API. Updox exposes a POST-based partner API surfaced through an IO Docs explorer (https://updoxqa.com/api/newio) with tiered application / account / user authentication. This document transcribes only the actions confirmed in the IO Docs explorer and knowledge base (Ping health checks, Address Book contacts, Faxing poll functions, and Video Chat actions); request/response bodies are modeled from the documented behavior, not a machine-readable Updox spec. Updox is part of EverCommerce (NASDAQ - EVCM).
+  contact:
+    name: Updox Support
+    url: https://www.updox.com/support/
+  x-modeled: true
+servers:
+- url: https://updoxqa.com/api/io
+  description: Updox IO Docs / QA reference host (production base is provisioned per partner)
+tags:
+- name: Video Chat
+  description: Telehealth video call actions.
+paths:
+  /VideoCallActions:
+    post:
+      tags:
+      - Video Chat
+      summary: Video call actions (SendInvite / retrieval)
+      description: Telehealth video actions. SendInvite invites a patient into an Updox Video Chat session; retrieval actions return call state. The action is selected by the request body.
+      operationId: videoCallActions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/FullAuth'
+              - type: object
+                properties:
+                  action:
+                    type: string
+                    enum:
+                    - SendInvite
+                    - GetCall
+                    - ListCalls
+                  patientId:
+                    type: string
+                  phoneOrEmail:
+                    type: string
+                    description: Destination for the video invite.
+      responses:
+        '200':
+          description: Action result (invite confirmation or call state).
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+components:
+  schemas:
+    AccountAuth:
+      allOf:
+      - $ref: '#/components/schemas/ApplicationAuth'
+      - type: object
+        required:
+        - accountId
+        properties:
+          accountId:
+            type: string
+    ApplicationAuth:
+      type: object
+      required:
+      - applicationId
+      - applicationPassword
+      properties:
+        applicationId:
+          type: string
+        applicationPassword:
+          type: string
+    FullAuth:
+      allOf:
+      - $ref: '#/components/schemas/AccountAuth'
+      - type: object
+        required:
+        - userId
+        properties:
+          userId:
+            type: string

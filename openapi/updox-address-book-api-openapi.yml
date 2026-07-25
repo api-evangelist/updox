@@ -1,0 +1,131 @@
+openapi: 3.0.3
+info:
+  title: Updox IO API (Modeled) Address Book API
+  version: '1.0'
+  description: Modeled OpenAPI for the confirmed actions of the Updox "IO" API. Updox exposes a POST-based partner API surfaced through an IO Docs explorer (https://updoxqa.com/api/newio) with tiered application / account / user authentication. This document transcribes only the actions confirmed in the IO Docs explorer and knowledge base (Ping health checks, Address Book contacts, Faxing poll functions, and Video Chat actions); request/response bodies are modeled from the documented behavior, not a machine-readable Updox spec. Updox is part of EverCommerce (NASDAQ - EVCM).
+  contact:
+    name: Updox Support
+    url: https://www.updox.com/support/
+  x-modeled: true
+servers:
+- url: https://updoxqa.com/api/io
+  description: Updox IO Docs / QA reference host (production base is provisioned per partner)
+tags:
+- name: Address Book
+  description: Practice-level contact/address-book actions.
+paths:
+  /AddressBookList:
+    post:
+      tags:
+      - Address Book
+      summary: List address book contacts
+      description: Get all contacts associated with the supplied account.
+      operationId: addressBookList
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountAuth'
+      responses:
+        '200':
+          description: Contacts for the account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactList'
+  /AddressBookSearch:
+    post:
+      tags:
+      - Address Book
+      summary: Search the practice address book
+      description: Search the practice-level address book by criteria.
+      operationId: addressBookSearch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccountAuth'
+              - type: object
+                properties:
+                  searchCriteria:
+                    type: string
+                    description: Name, phone, or other match criteria.
+      responses:
+        '200':
+          description: Matching contacts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactList'
+  /ContactCreate:
+    post:
+      tags:
+      - Address Book
+      summary: Create a contact
+      description: Create a contact with the supplied information.
+      operationId: contactCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/AccountAuth'
+              - $ref: '#/components/schemas/Contact'
+      responses:
+        '200':
+          description: Contact created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+components:
+  schemas:
+    AccountAuth:
+      allOf:
+      - $ref: '#/components/schemas/ApplicationAuth'
+      - type: object
+        required:
+        - accountId
+        properties:
+          accountId:
+            type: string
+    ContactList:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+    Contact:
+      type: object
+      properties:
+        contactId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        organization:
+          type: string
+        phone:
+          type: string
+        fax:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+    ApplicationAuth:
+      type: object
+      required:
+      - applicationId
+      - applicationPassword
+      properties:
+        applicationId:
+          type: string
+        applicationPassword:
+          type: string

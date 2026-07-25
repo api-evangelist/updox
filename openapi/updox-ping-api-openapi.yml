@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: Updox IO API (Modeled) Address Book Ping API
+  version: '1.0'
+  description: Modeled OpenAPI for the confirmed actions of the Updox "IO" API. Updox exposes a POST-based partner API surfaced through an IO Docs explorer (https://updoxqa.com/api/newio) with tiered application / account / user authentication. This document transcribes only the actions confirmed in the IO Docs explorer and knowledge base (Ping health checks, Address Book contacts, Faxing poll functions, and Video Chat actions); request/response bodies are modeled from the documented behavior, not a machine-readable Updox spec. Updox is part of EverCommerce (NASDAQ - EVCM).
+  contact:
+    name: Updox Support
+    url: https://www.updox.com/support/
+  x-modeled: true
+servers:
+- url: https://updoxqa.com/api/io
+  description: Updox IO Docs / QA reference host (production base is provisioned per partner)
+tags:
+- name: Ping
+  description: Connectivity and authentication health checks.
+paths:
+  /Ping:
+    post:
+      tags:
+      - Ping
+      summary: Ping (no authentication)
+      description: Unauthenticated connectivity check.
+      operationId: ping
+      responses:
+        '200':
+          description: Service reachable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PingResponse'
+  /PingWithApplicationAuth:
+    post:
+      tags:
+      - Ping
+      summary: Ping with application authentication
+      operationId: pingWithApplicationAuth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationAuth'
+      responses:
+        '200':
+          description: Application credentials validated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PingResponse'
+  /PingWithAccountAuth:
+    post:
+      tags:
+      - Ping
+      summary: Ping with application + account authentication
+      operationId: pingWithAccountAuth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountAuth'
+      responses:
+        '200':
+          description: Application + account credentials validated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PingResponse'
+  /PingWithAuth:
+    post:
+      tags:
+      - Ping
+      summary: Ping with full authentication (application + account + user)
+      operationId: pingWithAuth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FullAuth'
+      responses:
+        '200':
+          description: Full credentials validated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PingResponse'
+components:
+  schemas:
+    AccountAuth:
+      allOf:
+      - $ref: '#/components/schemas/ApplicationAuth'
+      - type: object
+        required:
+        - accountId
+        properties:
+          accountId:
+            type: string
+    ApplicationAuth:
+      type: object
+      required:
+      - applicationId
+      - applicationPassword
+      properties:
+        applicationId:
+          type: string
+        applicationPassword:
+          type: string
+    PingResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
+        timestamp:
+          type: string
+          format: date-time
+    FullAuth:
+      allOf:
+      - $ref: '#/components/schemas/AccountAuth'
+      - type: object
+        required:
+        - userId
+        properties:
+          userId:
+            type: string
