@@ -12,7 +12,19 @@ description: Updox is a healthcare communication and patient engagement platform
   is granted via application credentials rather than open self-serve signup, and much
   of the endpoint surface below is modeled from Updox's documented functional areas
   and webhook catalog.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Paid
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/updox.png
 tags:
 - Healthcare
 - Patient Engagement
@@ -26,63 +38,6 @@ created: '2026-07-04'
 modified: '2026-07-04'
 specificationVersion: '0.19'
 apis:
-- aid: updox:updox-address-book-api
-  name: Updox Address Book API
-  tags:
-  - Contacts
-  - Address Book
-  - Patients
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://help.updox.com/help/public-api
-  baseURL: https://updoxqa.com/api/io
-  properties:
-  - url: https://help.updox.com/help/public-api
-    type: Documentation
-  - url: https://updoxqa.com/api/newio
-    type: APIReference
-  - url: openapi/updox-openapi.yml
-    type: OpenAPI
-  description: List, search, and create contacts in a practice-level address book -
-    AddressBookList (with an international-address v1.1), AddressBookSearch by criteria,
-    and ContactCreate. These POST actions are confirmed in Updox's IO Docs explorer.
-- aid: updox:updox-faxing-api
-  name: Updox Faxing API
-  tags:
-  - Fax
-  - Electronic Fax
-  - Documents
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://help.updox.com/help/faxoempop
-  baseURL: https://updoxqa.com/api/io
-  properties:
-  - url: https://help.updox.com/help/faxoempop
-    type: Documentation
-  - url: https://help.updox.com/help/faxing-webhooks
-    type: Documentation
-  - url: openapi/updox-openapi.yml
-    type: OpenAPI
-  description: Send and retrieve electronic faxes. FaxOemPop and PopPDF are multifunction
-    poll endpoints that report whether inbound faxes are queued, return the fax image
-    (PNG or PDF) in the JSON response, and mark it handled via lastRetrievedFaxId until
-    endOfQueue. Faxing webhooks notify partners of inbound/outbound fax events.
-- aid: updox:updox-video-chat-api
-  name: Updox Video Chat API
-  tags:
-  - Telehealth
-  - Video
-  - VideoCallActions
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://help.updox.com/help/api-usage
-  baseURL: https://updoxqa.com/api/io
-  properties:
-  - url: https://help.updox.com/help/api-usage
-    type: Documentation
-  - url: openapi/updox-openapi.yml
-    type: OpenAPI
-  description: Telehealth video chat integration via VideoCallActions - SendInvite to
-    invite a patient into an Updox Video Chat session, plus retrieval actions for call
-    state. Designed to be paired with the Updox Video Chat web interface and video
-    webhooks for an embedded telehealth experience.
 - aid: updox:updox-direct-messaging-api
   name: Updox Direct Messaging API
   tags:
@@ -95,9 +50,10 @@ apis:
   properties:
   - url: https://help.updox.com/help/api-usage
     type: Documentation
-  description: Send and receive HISP Direct secure messages between providers, with
-    Direct Messaging webhooks for delivery/receipt events. Endpoints modeled from
-    Updox's documented Direct Messaging functional area and webhook catalog.
+  description: >-
+    Send and receive HISP Direct secure messages between providers, with Direct Messaging webhooks for
+    delivery/receipt events. Endpoints modeled from Updox's documented Direct Messaging functional area
+    and webhook catalog.
 - aid: updox:updox-secure-conversation-api
   name: Updox Secure Conversation API
   tags:
@@ -110,9 +66,10 @@ apis:
   properties:
   - url: https://help.updox.com/help/api-usage
     type: Documentation
-  description: Manage secure two-way patient conversations (secure text/SMS threads),
-    with Secure Conversation Management webhooks for new-message events. Endpoints
-    modeled from Updox's documented functional area and webhook catalog.
+  description: >-
+    Manage secure two-way patient conversations (secure text/SMS threads), with Secure Conversation Management
+    webhooks for new-message events. Endpoints modeled from Updox's documented functional area and webhook
+    catalog.
 - aid: updox:updox-document-management-api
   name: Updox Document Management API
   tags:
@@ -125,9 +82,9 @@ apis:
   properties:
   - url: https://help.updox.com/help/api-usage
     type: Documentation
-  description: Create, retrieve, and route documents within the Updox inbox, with
-    Document Management webhooks for document lifecycle events. Endpoints modeled from
-    Updox's documented functional area and webhook catalog.
+  description: >-
+    Create, retrieve, and route documents within the Updox inbox, with Document Management webhooks for
+    document lifecycle events. Endpoints modeled from Updox's documented functional area and webhook catalog.
 - aid: updox:updox-patient-management-api
   name: Updox Patient Management API
   tags:
@@ -140,10 +97,10 @@ apis:
   properties:
   - url: https://help.updox.com/help/api-usage
     type: Documentation
-  description: Create and update patient records and demographics that anchor
-    reminders, forms, portal access, and conversations, with Patient Management
-    webhooks. Endpoints modeled from Updox's documented functional area and webhook
-    catalog.
+  description: >-
+    Create and update patient records and demographics that anchor reminders, forms, portal access, and
+    conversations, with Patient Management webhooks. Endpoints modeled from Updox's documented functional
+    area and webhook catalog.
 - aid: updox:updox-patient-portal-api
   name: Updox Patient Portal API
   tags:
@@ -155,9 +112,9 @@ apis:
   properties:
   - url: https://help.updox.com/help/api-usage
     type: Documentation
-  description: Provision and manage patient portal access and portal messaging, with
-    Patient Portal webhooks for portal activity. Endpoints modeled from Updox's
-    documented functional area and webhook catalog.
+  description: >-
+    Provision and manage patient portal access and portal messaging, with Patient Portal webhooks for
+    portal activity. Endpoints modeled from Updox's documented functional area and webhook catalog.
 - aid: updox:updox-reminders-api
   name: Updox Reminders API
   tags:
@@ -170,10 +127,10 @@ apis:
   properties:
   - url: https://help.updox.com/help/api-usage
     type: Documentation
-  description: Schedule and manage appointment reminders and broadcast messages
-    across text, voice, and email, with Reminders webhooks for confirmation/response
-    events. Endpoints modeled from Updox's documented functional area and webhook
-    catalog.
+  description: >-
+    Schedule and manage appointment reminders and broadcast messages across text, voice, and email, with
+    Reminders webhooks for confirmation/response events. Endpoints modeled from Updox's documented functional
+    area and webhook catalog.
 - aid: updox:updox-forms-api
   name: Updox Forms API
   tags:
@@ -186,9 +143,10 @@ apis:
   properties:
   - url: https://help.updox.com/help/api-usage
     type: Documentation
-  description: Send electronic intake and consent forms to patients and receive
-    completed submissions, with Forms webhooks for completion events. Endpoints
-    modeled from Updox's documented functional area and webhook catalog.
+  description: >-
+    Send electronic intake and consent forms to patients and receive completed submissions, with Forms
+    webhooks for completion events. Endpoints modeled from Updox's documented functional area and webhook
+    catalog.
 - aid: updox:updox-account-management-api
   name: Updox Account Management API
   tags:
@@ -201,11 +159,91 @@ apis:
   properties:
   - url: https://help.updox.com/help/api-usage
     type: Documentation
-  description: Administer accounts, users, and application connectivity, including the
-    tiered Ping health-check actions (Ping, PingWithApplicationAuth, PingWithAccountAuth,
-    PingWithAuth) and Account Management webhooks. Ping actions are confirmed in the
-    IO Docs explorer; remaining account endpoints are modeled from the documented
-    functional area.
+  description: >-
+    Administer accounts, users, and application connectivity, including the tiered Ping health-check actions
+    (Ping, PingWithApplicationAuth, PingWithAccountAuth, PingWithAuth) and Account Management webhooks.
+    Ping actions are confirmed in the IO Docs explorer; remaining account endpoints are modeled from the
+    documented functional area.
+- aid: updox:updox-address-book-api
+  name: Updox Address Book API
+  description: Practice-level contact/address-book actions.
+  humanURL: https://help.updox.com/help/public-api
+  baseURL: https://updoxqa.com/api/io
+  tags:
+  - Address Book
+  properties:
+  - type: OpenAPI
+    url: openapi/updox-address-book-api-openapi.yml
+  - type: Documentation
+    url: https://help.updox.com/help/public-api
+  - type: APIReference
+    url: https://updoxqa.com/api/newio
+  - type: Documentation
+    url: https://help.updox.com/help/faxoempop
+  - type: Documentation
+    url: https://help.updox.com/help/faxing-webhooks
+  - type: Documentation
+    url: https://help.updox.com/help/api-usage
+- aid: updox:updox-faxing-api
+  name: Updox Faxing API
+  description: Inbound electronic fax retrieval.
+  humanURL: https://help.updox.com/help/public-api
+  baseURL: https://updoxqa.com/api/io
+  tags:
+  - Faxing
+  properties:
+  - type: OpenAPI
+    url: openapi/updox-faxing-api-openapi.yml
+  - type: Documentation
+    url: https://help.updox.com/help/public-api
+  - type: APIReference
+    url: https://updoxqa.com/api/newio
+  - type: Documentation
+    url: https://help.updox.com/help/faxoempop
+  - type: Documentation
+    url: https://help.updox.com/help/faxing-webhooks
+  - type: Documentation
+    url: https://help.updox.com/help/api-usage
+- aid: updox:updox-ping-api
+  name: Updox Ping API
+  description: Connectivity and authentication health checks.
+  humanURL: https://help.updox.com/help/public-api
+  baseURL: https://updoxqa.com/api/io
+  tags:
+  - Ping
+  properties:
+  - type: OpenAPI
+    url: openapi/updox-ping-api-openapi.yml
+  - type: Documentation
+    url: https://help.updox.com/help/public-api
+  - type: APIReference
+    url: https://updoxqa.com/api/newio
+  - type: Documentation
+    url: https://help.updox.com/help/faxoempop
+  - type: Documentation
+    url: https://help.updox.com/help/faxing-webhooks
+  - type: Documentation
+    url: https://help.updox.com/help/api-usage
+- aid: updox:updox-video-chat-api
+  name: Updox Video Chat API
+  description: Telehealth video call actions.
+  humanURL: https://help.updox.com/help/public-api
+  baseURL: https://updoxqa.com/api/io
+  tags:
+  - Video Chat
+  properties:
+  - type: OpenAPI
+    url: openapi/updox-video-chat-api-openapi.yml
+  - type: Documentation
+    url: https://help.updox.com/help/public-api
+  - type: APIReference
+    url: https://updoxqa.com/api/newio
+  - type: Documentation
+    url: https://help.updox.com/help/faxoempop
+  - type: Documentation
+    url: https://help.updox.com/help/faxing-webhooks
+  - type: Documentation
+    url: https://help.updox.com/help/api-usage
 common:
 - type: AgenticAccess
   url: agentic-access/updox-agentic-access.yml
