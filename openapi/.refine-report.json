@@ -1,0 +1,20 @@
+{
+  "provider": "updox",
+  "sources": [
+    "updox-address-book-api-openapi.yml",
+    "updox-faxing-api-openapi.yml",
+    "updox-ping-api-openapi.yml",
+    "updox-video-chat-api-openapi.yml"
+  ],
+  "outputs": [
+    "updox-address-book-api-openapi.yml",
+    "updox-faxing-api-openapi.yml",
+    "updox-ping-api-openapi.yml",
+    "updox-video-chat-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
