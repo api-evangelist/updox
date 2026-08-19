@@ -1,0 +1,305 @@
+{
+  "item": [
+    {
+      "id": "8b448cf9-e9ed-4487-a047-901a2ac43429",
+      "name": "Address Book",
+      "description": {
+        "content": "Practice-level contact/address-book actions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b8ce3cb6-61df-4335-af0d-24cfc07239c1",
+          "name": "List address book contacts",
+          "request": {
+            "name": "List address book contacts",
+            "description": {
+              "content": "Get all contacts associated with the supplied account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AddressBookList"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"applicationPassword\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c902293f-8fe8-4140-9503-456f2b879fe2",
+              "name": "Contacts for the account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AddressBookList"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"applicationPassword\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contacts\": [\n    {\n      \"contactId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"organization\": \"string\",\n      \"phone\": \"string\",\n      \"fax\": \"string\",\n      \"email\": \"string\",\n      \"address\": \"string\"\n    },\n    {\n      \"contactId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"organization\": \"string\",\n      \"phone\": \"string\",\n      \"fax\": \"string\",\n      \"email\": \"string\",\n      \"address\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9c7dc31-adcd-4b8c-a4a1-7ba9e3482c4b",
+          "name": "Search the practice address book",
+          "request": {
+            "name": "Search the practice address book",
+            "description": {
+              "content": "Search the practice-level address book by criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "AddressBookSearch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"applicationPassword\": \"<string>\",\n  \"searchCriteria\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "17dd2689-919b-4beb-8a81-26963114fbe8",
+              "name": "Matching contacts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "AddressBookSearch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"applicationPassword\": \"<string>\",\n  \"searchCriteria\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contacts\": [\n    {\n      \"contactId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"organization\": \"string\",\n      \"phone\": \"string\",\n      \"fax\": \"string\",\n      \"email\": \"string\",\n      \"address\": \"string\"\n    },\n    {\n      \"contactId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"organization\": \"string\",\n      \"phone\": \"string\",\n      \"fax\": \"string\",\n      \"email\": \"string\",\n      \"address\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39400344-267b-4efd-b519-51b2b5a5a949",
+          "name": "Create a contact",
+          "request": {
+            "name": "Create a contact",
+            "description": {
+              "content": "Create a contact with the supplied information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ContactCreate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"applicationPassword\": \"<string>\",\n  \"contactId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"fax\": \"<string>\",\n  \"email\": \"<string>\",\n  \"address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7528d6b5-2d53-45bf-9700-495bc642dac1",
+              "name": "Contact created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ContactCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"applicationPassword\": \"<string>\",\n  \"contactId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"fax\": \"<string>\",\n  \"email\": \"<string>\",\n  \"address\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contactId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"organization\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"fax\": \"<string>\",\n  \"email\": \"<string>\",\n  \"address\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://updoxqa.com/api/io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5384cbd7-79c3-4b94-b07c-b920587c900b",
+    "name": "Updox IO API (Modeled) Address Book API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Modeled OpenAPI for the confirmed actions of the Updox \"IO\" API. Updox exposes a POST-based partner API surfaced through an IO Docs explorer (https://updoxqa.com/api/newio) with tiered application / account / user authentication. This document transcribes only the actions confirmed in the IO Docs explorer and knowledge base (Ping health checks, Address Book contacts, Faxing poll functions, and Video Chat actions); request/response bodies are modeled from the documented behavior, not a machine-readable Updox spec. Updox is part of EverCommerce (NASDAQ - EVCM).\n\nContact Support:\n Name: Updox Support",
+      "type": "text/plain"
+    }
+  }
+}

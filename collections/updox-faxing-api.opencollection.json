@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Updox IO API (Modeled) Address Book Faxing API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Faxing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve next inbound fax (PNG)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://updoxqa.com/api/io/FaxOemPop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Multifunction poll. Reports whether inbound faxes are queued, returns the oldest unhandled fax image (PNG) in the response, and marks the prior fax handled via lastRetrievedFaxId. Repeat until endOfQueue is true."
+        },
+        {
+          "info": {
+            "name": "Retrieve next inbound fax (PDF)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://updoxqa.com/api/io/PopPDF",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Same behavior and parameters as FaxOemPop, but returns the fax as a PDF."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

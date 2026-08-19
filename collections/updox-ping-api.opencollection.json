@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Updox IO API (Modeled) Address Book Ping API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ping",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ping (no authentication)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://updoxqa.com/api/io/Ping"
+          },
+          "docs": "Unauthenticated connectivity check."
+        },
+        {
+          "info": {
+            "name": "Ping with application authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://updoxqa.com/api/io/PingWithApplicationAuth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ping with application authentication"
+        },
+        {
+          "info": {
+            "name": "Ping with application + account authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://updoxqa.com/api/io/PingWithAccountAuth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ping with application + account authentication"
+        },
+        {
+          "info": {
+            "name": "Ping with full authentication (application + account + user)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://updoxqa.com/api/io/PingWithAuth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ping with full authentication (application + account + user)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Updox IO API (Modeled) Address Book Video Chat API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Chat",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Video call actions (SendInvite / retrieval)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://updoxqa.com/api/io/VideoCallActions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Telehealth video actions. SendInvite invites a patient into an Updox Video Chat session; retrieval actions return call state. The action is selected by the request body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,214 @@
+{
+  "item": [
+    {
+      "id": "eaf49269-3221-457a-966e-e56f29686789",
+      "name": "Faxing",
+      "description": {
+        "content": "Inbound electronic fax retrieval.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "69d8335a-77ac-4fa8-85fb-47860f071941",
+          "name": "Retrieve next inbound fax (PNG)",
+          "request": {
+            "name": "Retrieve next inbound fax (PNG)",
+            "description": {
+              "content": "Multifunction poll. Reports whether inbound faxes are queued, returns the oldest unhandled fax image (PNG) in the response, and marks the prior fax handled via lastRetrievedFaxId. Repeat until endOfQueue is true.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "FaxOemPop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"applicationPassword\": \"<string>\",\n  \"lastRetrievedFaxId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f8c630a-26d1-49fe-b004-e7eea7f84cfa",
+              "name": "Fax payload or end-of-queue marker.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "FaxOemPop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"applicationPassword\": \"<string>\",\n  \"lastRetrievedFaxId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"faxId\": \"string\",\n  \"endOfQueue\": false,\n  \"contentType\": \"application/pdf\",\n  \"content\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77e6d155-20c2-4649-a1b8-2fcc16662d30",
+          "name": "Retrieve next inbound fax (PDF)",
+          "request": {
+            "name": "Retrieve next inbound fax (PDF)",
+            "description": {
+              "content": "Same behavior and parameters as FaxOemPop, but returns the fax as a PDF.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "PopPDF"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"applicationPassword\": \"<string>\",\n  \"lastRetrievedFaxId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b95f817d-29e6-4575-8a36-4afe113b0abf",
+              "name": "Fax payload or end-of-queue marker.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "PopPDF"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"applicationPassword\": \"<string>\",\n  \"lastRetrievedFaxId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"faxId\": \"string\",\n  \"endOfQueue\": false,\n  \"contentType\": \"application/pdf\",\n  \"content\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://updoxqa.com/api/io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ec53efc6-6ec3-482a-8843-720b1660cca8",
+    "name": "Updox IO API (Modeled) Address Book Faxing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Modeled OpenAPI for the confirmed actions of the Updox \"IO\" API. Updox exposes a POST-based partner API surfaced through an IO Docs explorer (https://updoxqa.com/api/newio) with tiered application / account / user authentication. This document transcribes only the actions confirmed in the IO Docs explorer and knowledge base (Ping health checks, Address Book contacts, Faxing poll functions, and Video Chat actions); request/response bodies are modeled from the documented behavior, not a machine-readable Updox spec. Updox is part of EverCommerce (NASDAQ - EVCM).\n\nContact Support:\n Name: Updox Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "item": [
+    {
+      "id": "60f0021c-2d51-4749-a330-8633cd53ab4b",
+      "name": "Video Chat",
+      "description": {
+        "content": "Telehealth video call actions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e694cbcb-c8b0-4975-87bc-697ca7469435",
+          "name": "Video call actions (SendInvite / retrieval)",
+          "request": {
+            "name": "Video call actions (SendInvite / retrieval)",
+            "description": {
+              "content": "Telehealth video actions. SendInvite invites a patient into an Updox Video Chat session; retrieval actions return call state. The action is selected by the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "VideoCallActions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"applicationPassword\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"action\": \"<string>\",\n  \"patientId\": \"<string>\",\n  \"phoneOrEmail\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "54723564-2c48-46b7-ba54-3e0bc75168d6",
+              "name": "Action result (invite confirmation or call state).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "VideoCallActions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"applicationPassword\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"action\": \"<string>\",\n  \"patientId\": \"<string>\",\n  \"phoneOrEmail\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 5801.390773366739,\n  \"key_1\": 9583.070036103396\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://updoxqa.com/api/io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b4daf785-9e34-42ae-856e-126f22329125",
+    "name": "Updox IO API (Modeled) Address Book Video Chat API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Modeled OpenAPI for the confirmed actions of the Updox \"IO\" API. Updox exposes a POST-based partner API surfaced through an IO Docs explorer (https://updoxqa.com/api/newio) with tiered application / account / user authentication. This document transcribes only the actions confirmed in the IO Docs explorer and knowledge base (Ping health checks, Address Book contacts, Faxing poll functions, and Video Chat actions); request/response bodies are modeled from the documented behavior, not a machine-readable Updox spec. Updox is part of EverCommerce (NASDAQ - EVCM).\n\nContact Support:\n Name: Updox Support",
+      "type": "text/plain"
+    }
+  }
+}

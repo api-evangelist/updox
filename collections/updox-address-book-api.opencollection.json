@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Updox IO API (Modeled) Address Book API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Address Book",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List address book contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://updoxqa.com/api/io/AddressBookList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get all contacts associated with the supplied account."
+        },
+        {
+          "info": {
+            "name": "Search the practice address book",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://updoxqa.com/api/io/AddressBookSearch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search the practice-level address book by criteria."
+        },
+        {
+          "info": {
+            "name": "Create a contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://updoxqa.com/api/io/ContactCreate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a contact with the supplied information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
