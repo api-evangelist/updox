@@ -31,6 +31,15 @@ tags:
 - Secure Messaging
 - Electronic Fax
 - Telehealth
+- Document-Management
+- HIPAA
+- EverCommerce
+tags_raw:
+- Healthcare
+- Patient Engagement
+- Secure Messaging
+- Electronic Fax
+- Telehealth
 - Document Management
 - HIPAA
 - EverCommerce
@@ -120,6 +129,10 @@ apis:
   tags:
   - Appointments
   - Reminders
+  - Notification
+  tags_raw:
+  - Appointments
+  - Reminders
   - Notifications
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://help.updox.com/help/api-usage
@@ -136,6 +149,10 @@ apis:
   tags:
   - Forms
   - Intake
+  - E-Signature
+  tags_raw:
+  - Forms
+  - Intake
   - eSignature
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://help.updox.com/help/api-usage
@@ -150,6 +167,10 @@ apis:
 - aid: updox:updox-account-management-api
   name: Updox Account Management API
   tags:
+  - Account
+  - Provisioning
+  - Administration
+  tags_raw:
   - Accounts
   - Provisioning
   - Administration
