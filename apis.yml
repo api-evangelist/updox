@@ -12,6 +12,18 @@ description: Updox is a healthcare communication and patient engagement platform
   is granted via application credentials rather than open self-serve signup, and much
   of the endpoint surface below is modeled from Updox's documented functional areas
   and webhook catalog.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: unknown
