@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Updox IO API (Modeled) Address Book Faxing API
+  title: Updox IO API (Modeled) Faxing API
   version: '1.0'
-  description: Modeled OpenAPI for the confirmed actions of the Updox "IO" API. Updox exposes a POST-based partner API surfaced through an IO Docs explorer (https://updoxqa.com/api/newio) with tiered application / account / user authentication. This document transcribes only the actions confirmed in the IO Docs explorer and knowledge base (Ping health checks, Address Book contacts, Faxing poll functions, and Video Chat actions); request/response bodies are modeled from the documented behavior, not a machine-readable Updox spec. Updox is part of EverCommerce (NASDAQ - EVCM).
+  description: Modeled OpenAPI for the confirmed actions of the Updox "IO" API.
   contact:
     name: Updox Support
     url: https://www.updox.com/support/
@@ -56,6 +56,24 @@ paths:
                 $ref: '#/components/schemas/FaxPopResponse'
 components:
   schemas:
+    ApplicationAuth:
+      type: object
+      required:
+      - applicationId
+      - applicationPassword
+      properties:
+        applicationId:
+          type: string
+        applicationPassword:
+          type: string
+    FaxPopRequest:
+      allOf:
+      - $ref: '#/components/schemas/AccountAuth'
+      - type: object
+        properties:
+          lastRetrievedFaxId:
+            type: string
+            description: ID of the previously retrieved fax, marking it handled so the next unhandled fax is returned. Omit on the first call.
     AccountAuth:
       allOf:
       - $ref: '#/components/schemas/ApplicationAuth'
@@ -82,21 +100,3 @@ components:
           type: string
           format: byte
           description: Base64-encoded fax image, present when a fax is available.
-    ApplicationAuth:
-      type: object
-      required:
-      - applicationId
-      - applicationPassword
-      properties:
-        applicationId:
-          type: string
-        applicationPassword:
-          type: string
-    FaxPopRequest:
-      allOf:
-      - $ref: '#/components/schemas/AccountAuth'
-      - type: object
-        properties:
-          lastRetrievedFaxId:
-            type: string
-            description: ID of the previously retrieved fax, marking it handled so the next unhandled fax is returned. Omit on the first call.

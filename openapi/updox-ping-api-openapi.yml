@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Updox IO API (Modeled) Address Book Ping API
+  title: Updox IO API (Modeled) Ping API
   version: '1.0'
-  description: Modeled OpenAPI for the confirmed actions of the Updox "IO" API. Updox exposes a POST-based partner API surfaced through an IO Docs explorer (https://updoxqa.com/api/newio) with tiered application / account / user authentication. This document transcribes only the actions confirmed in the IO Docs explorer and knowledge base (Ping health checks, Address Book contacts, Faxing poll functions, and Video Chat actions); request/response bodies are modeled from the documented behavior, not a machine-readable Updox spec. Updox is part of EverCommerce (NASDAQ - EVCM).
+  description: Modeled OpenAPI for the confirmed actions of the Updox "IO" API.
   contact:
     name: Updox Support
     url: https://www.updox.com/support/
@@ -87,15 +87,6 @@ paths:
                 $ref: '#/components/schemas/PingResponse'
 components:
   schemas:
-    AccountAuth:
-      allOf:
-      - $ref: '#/components/schemas/ApplicationAuth'
-      - type: object
-        required:
-        - accountId
-        properties:
-          accountId:
-            type: string
     ApplicationAuth:
       type: object
       required:
@@ -106,15 +97,6 @@ components:
           type: string
         applicationPassword:
           type: string
-    PingResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          example: ok
-        timestamp:
-          type: string
-          format: date-time
     FullAuth:
       allOf:
       - $ref: '#/components/schemas/AccountAuth'
@@ -124,3 +106,21 @@ components:
         properties:
           userId:
             type: string
+    AccountAuth:
+      allOf:
+      - $ref: '#/components/schemas/ApplicationAuth'
+      - type: object
+        required:
+        - accountId
+        properties:
+          accountId:
+            type: string
+    PingResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
+        timestamp:
+          type: string
+          format: date-time
