@@ -87,16 +87,6 @@ paths:
                 $ref: '#/components/schemas/PingResponse'
 components:
   schemas:
-    ApplicationAuth:
-      type: object
-      required:
-      - applicationId
-      - applicationPassword
-      properties:
-        applicationId:
-          type: string
-        applicationPassword:
-          type: string
     FullAuth:
       allOf:
       - $ref: '#/components/schemas/AccountAuth'
@@ -105,15 +95,6 @@ components:
         - userId
         properties:
           userId:
-            type: string
-    AccountAuth:
-      allOf:
-      - $ref: '#/components/schemas/ApplicationAuth'
-      - type: object
-        required:
-        - accountId
-        properties:
-          accountId:
             type: string
     PingResponse:
       type: object
@@ -124,3 +105,22 @@ components:
         timestamp:
           type: string
           format: date-time
+    AccountAuth:
+      allOf:
+      - $ref: '#/components/schemas/ApplicationAuth'
+      - type: object
+        required:
+        - accountId
+        properties:
+          accountId:
+            type: string
+    ApplicationAuth:
+      type: object
+      required:
+      - applicationId
+      - applicationPassword
+      properties:
+        applicationId:
+          type: string
+        applicationPassword:
+          type: string

@@ -43,7 +43,7 @@ tags:
 - Secure Messaging
 - Electronic Fax
 - Telehealth
-- Document-Management
+- Document Management
 - HIPAA
 - EverCommerce
 tags_raw:
@@ -55,6 +55,7 @@ tags_raw:
 - Document Management
 - HIPAA
 - EverCommerce
+- Document-Management
 created: '2026-07-04'
 modified: '2026-07-04'
 specificationVersion: '0.23'
