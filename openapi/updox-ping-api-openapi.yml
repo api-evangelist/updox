@@ -96,6 +96,16 @@ components:
         properties:
           userId:
             type: string
+    ApplicationAuth:
+      type: object
+      required:
+      - applicationId
+      - applicationPassword
+      properties:
+        applicationId:
+          type: string
+        applicationPassword:
+          type: string
     PingResponse:
       type: object
       properties:
@@ -114,13 +124,3 @@ components:
         properties:
           accountId:
             type: string
-    ApplicationAuth:
-      type: object
-      required:
-      - applicationId
-      - applicationPassword
-      properties:
-        applicationId:
-          type: string
-        applicationPassword:
-          type: string

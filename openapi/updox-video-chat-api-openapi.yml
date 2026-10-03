@@ -60,15 +60,6 @@ components:
         properties:
           userId:
             type: string
-    AccountAuth:
-      allOf:
-      - $ref: '#/components/schemas/ApplicationAuth'
-      - type: object
-        required:
-        - accountId
-        properties:
-          accountId:
-            type: string
     ApplicationAuth:
       type: object
       required:
@@ -79,3 +70,12 @@ components:
           type: string
         applicationPassword:
           type: string
+    AccountAuth:
+      allOf:
+      - $ref: '#/components/schemas/ApplicationAuth'
+      - type: object
+        required:
+        - accountId
+        properties:
+          accountId:
+            type: string

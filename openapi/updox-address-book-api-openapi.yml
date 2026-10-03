@@ -84,13 +84,6 @@ paths:
                 $ref: '#/components/schemas/Contact'
 components:
   schemas:
-    ContactList:
-      type: object
-      properties:
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
     AccountAuth:
       allOf:
       - $ref: '#/components/schemas/ApplicationAuth'
@@ -110,6 +103,13 @@ components:
           type: string
         applicationPassword:
           type: string
+    ContactList:
+      type: object
+      properties:
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
     Contact:
       type: object
       properties:
