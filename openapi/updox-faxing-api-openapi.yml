@@ -56,15 +56,14 @@ paths:
                 $ref: '#/components/schemas/FaxPopResponse'
 components:
   schemas:
-    AccountAuth:
+    FaxPopRequest:
       allOf:
-      - $ref: '#/components/schemas/ApplicationAuth'
+      - $ref: '#/components/schemas/AccountAuth'
       - type: object
-        required:
-        - accountId
         properties:
-          accountId:
+          lastRetrievedFaxId:
             type: string
+            description: ID of the previously retrieved fax, marking it handled so the next unhandled fax is returned. Omit on the first call.
     ApplicationAuth:
       type: object
       required:
@@ -75,6 +74,15 @@ components:
           type: string
         applicationPassword:
           type: string
+    AccountAuth:
+      allOf:
+      - $ref: '#/components/schemas/ApplicationAuth'
+      - type: object
+        required:
+        - accountId
+        properties:
+          accountId:
+            type: string
     FaxPopResponse:
       type: object
       properties:
@@ -92,11 +100,3 @@ components:
           type: string
           format: byte
           description: Base64-encoded fax image, present when a fax is available.
-    FaxPopRequest:
-      allOf:
-      - $ref: '#/components/schemas/AccountAuth'
-      - type: object
-        properties:
-          lastRetrievedFaxId:
-            type: string
-            description: ID of the previously retrieved fax, marking it handled so the next unhandled fax is returned. Omit on the first call.
