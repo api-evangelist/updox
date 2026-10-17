@@ -51,14 +51,14 @@ paths:
                 additionalProperties: true
 components:
   schemas:
-    FullAuth:
+    AccountAuth:
       allOf:
-      - $ref: '#/components/schemas/AccountAuth'
+      - $ref: '#/components/schemas/ApplicationAuth'
       - type: object
         required:
-        - userId
+        - accountId
         properties:
-          userId:
+          accountId:
             type: string
     ApplicationAuth:
       type: object
@@ -70,12 +70,12 @@ components:
           type: string
         applicationPassword:
           type: string
-    AccountAuth:
+    FullAuth:
       allOf:
-      - $ref: '#/components/schemas/ApplicationAuth'
+      - $ref: '#/components/schemas/AccountAuth'
       - type: object
         required:
-        - accountId
+        - userId
         properties:
-          accountId:
+          userId:
             type: string
