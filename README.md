@@ -1,4 +1,4 @@
-# Updox (updox)
+# Updox
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,93 +64,131 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Updox is a healthcare communication and patient engagement platform for in-person and virtual care, offering a single inbox for secure/direct messaging, electronic fax, document management, patient reminders, forms, and telehealth video chat. Updox is integrated with 100+ EHR and pharmacy management systems and has been a part of **EverCommerce** (NASDAQ: EVCM) since its **December 2020** acquisition.
+Updox is a healthcare communication and patient engagement platform for in-person and virtual care, offering a single inbox for secure/direct messaging, electronic fax, document management, patient reminders, forms, and telehealth video chat, integrated with 100+ EHR and pharmacy management systems. Updox has been a part of EverCommerce (NASDAQ - EVCM) since its December 2020 acquisition. Updox exposes a documented public/partner API (an IO Docs explorer plus a knowledge-base API reference) used mainly by EHR, pharmacy, and integration partners; API access is granted via application credentials rather than open self-serve signup, and much of the endpoint surface below is modeled from Updox's documented functional areas and webhook catalog.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/updox/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/updox/refs/heads/main/apis.yml)
+**Areas:** Healthcare · Patient Engagement · Secure Messaging · Electronic Fax · Telehealth · Document Management · HIPAA · EverCommerce
 
-## Access model (read this first)
+## Updox on APIs.io
 
-Updox exposes a **documented but partner-gated** public API, not an open self-serve developer program:
+Everything profiled for Updox is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/updox/](https://apis.io/providers/updox/)** — or go straight to one of the APIs or properties below.
 
-- The API is a **POST-based "IO" API** surfaced through an **IO Docs explorer** at [updoxqa.com/api/newio](https://updoxqa.com/api/newio) (base `https://updoxqa.com/api/io`), plus a knowledge base at [help.updox.com](https://help.updox.com/help/public-api).
-- Authentication is **tiered**: `applicationId` + `applicationPassword`, then `accountId`, then `userId`, depending on the action. Credentials are **issued by Updox to partners** (EHR, pharmacy, integration vendors) rather than created via open signup.
-- Event delivery is by **HTTP webhooks** across eleven functional areas (no public WebSocket — see `review.yml`).
-- The reachable reference host is the QA/IO Docs environment (`updoxqa.com`); the production base is provisioned per partner.
+### APIs (12)
 
-**Confirmed** from the IO Docs explorer and knowledge base: the `Ping` health checks, Address Book actions (`AddressBookList` incl. v1.1, `AddressBookSearch`, `ContactCreate`), the Faxing poll functions (`FaxOemPop`, `PopPDF`), and Video Chat `VideoCallActions` (`SendInvite`, retrieval). The remaining logical APIs below (Direct Messaging, Secure Conversation, Document Management, Patient Management, Patient Portal, Reminders, Forms, and the rest of Account Management) are **modeled** from Updox's documented functional areas and webhook catalog. The bundled OpenAPI (`openapi/updox-openapi.yml`) covers only the confirmed actions and is marked `x-modeled: true`.
+- [Updox Direct Messaging API](https://apis.io/apis/updox/updox-direct-messaging-api/) — Send and receive HISP Direct secure messages between providers, with Direct Messaging webhooks for delivery/receipt events. Endpoints modeled from Updox's…
+- [Updox Secure Conversation API](https://apis.io/apis/updox/updox-secure-conversation-api/) — Manage secure two-way patient conversations (secure text/SMS threads), with Secure Conversation Management webhooks for new-message events. Endpoints…
+- [Updox Document Management API](https://apis.io/apis/updox/updox-document-management-api/) — Create, retrieve, and route documents within the Updox inbox, with Document Management webhooks for document lifecycle events. Endpoints modeled from…
+- [Updox Patient Management API](https://apis.io/apis/updox/updox-patient-management-api/) — Create and update patient records and demographics that anchor reminders, forms, portal access, and conversations, with Patient Management webhooks.…
+- [Updox Patient Portal API](https://apis.io/apis/updox/updox-patient-portal-api/) — Provision and manage patient portal access and portal messaging, with Patient Portal webhooks for portal activity. Endpoints modeled from Updox's documented…
+- [Updox Reminders API](https://apis.io/apis/updox/updox-reminders-api/) — Schedule and manage appointment reminders and broadcast messages across text, voice, and email, with Reminders webhooks for confirmation/response events.…
+- [Updox Forms API](https://apis.io/apis/updox/updox-forms-api/) — Send electronic intake and consent forms to patients and receive completed submissions, with Forms webhooks for completion events. Endpoints modeled from…
+- [Updox Account Management API](https://apis.io/apis/updox/updox-account-management-api/) — Administer accounts, users, and application connectivity, including the tiered Ping health-check actions (Ping, PingWithApplicationAuth,…
+- [Updox Address Book API](https://apis.io/apis/updox/updox-address-book-api/) — Practice-level contact/address-book actions.
+- [Updox Faxing API](https://apis.io/apis/updox/updox-faxing-api/) — Inbound electronic fax retrieval.
+- [Updox Ping API](https://apis.io/apis/updox/updox-ping-api/) — Connectivity and authentication health checks.
+- [Updox Video Chat API](https://apis.io/apis/updox/updox-video-chat-api/) — Telehealth video call actions.
 
-## Tags
+### Published properties
 
-- Healthcare
-- Patient Engagement
-- Secure Messaging
-- Electronic Fax
-- Telehealth
-- Document Management
-- HIPAA
-- EverCommerce
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
+#### Agentic access (1)
 
-- **Created:** 2026-07-04
-- **Modified:** 2026-07-04
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## APIs
+- [Updox Agentic Access](https://apis.io/agentic-access/updox/updox-agentic-access/)
 
-### Updox Address Book API
-List, search, and create practice-level contacts — `AddressBookList` (with an international-address v1.1), `AddressBookSearch`, and `ContactCreate`. Confirmed in the IO Docs explorer. Base URL: `https://updoxqa.com/api/io`.
+#### Collections (4)
 
-### Updox Faxing API
-Send and retrieve electronic faxes. `FaxOemPop` and `PopPDF` are multifunction poll endpoints that report whether inbound faxes are queued, return the fax image (PNG or PDF) in the JSON response, and mark it handled via `lastRetrievedFaxId` until `endOfQueue`. Faxing webhooks notify partners of fax events.
+Postman and Open Collection request collections.
 
-### Updox Video Chat API
-Telehealth video integration via `VideoCallActions` — `SendInvite` to invite a patient into an Updox Video Chat session, plus retrieval actions for call state. Paired with the Updox Video Chat web interface and video webhooks.
+- [Updox IO API (Modeled) Address Book API](https://apis.io/collections/updox/open-updox-address-book-api/)
+- [Updox IO API (Modeled) Address Book Faxing API](https://apis.io/collections/updox/open-updox-faxing-api/)
+- [Updox IO API (Modeled) Address Book Ping API](https://apis.io/collections/updox/open-updox-ping-api/)
+- [Updox IO API (Modeled) Address Book Video Chat API](https://apis.io/collections/updox/open-updox-video-chat-api/)
 
-### Updox Direct Messaging API
-HISP Direct secure messaging between providers, with Direct Messaging webhooks. *(Endpoints modeled from the documented functional area.)*
+#### Security (1)
 
-### Updox Secure Conversation API
-Two-way secure patient conversations (secure text/SMS), with Secure Conversation Management webhooks. *(Modeled.)*
+Authentication, trust centre, and vulnerability disclosure.
 
-### Updox Document Management API
-Create, retrieve, and route documents in the Updox inbox, with Document Management webhooks. *(Modeled.)*
+- [Updox Domain Security](https://apis.io/security/updox/updox-domain-security/)
 
-### Updox Patient Management API
-Create and update patient records/demographics that anchor reminders, forms, portal, and conversations, with Patient Management webhooks. *(Modeled.)*
+#### Plans and pricing (1)
 
-### Updox Patient Portal API
-Provision and manage patient portal access and portal messaging, with Patient Portal webhooks. *(Modeled.)*
+Published plans, tiers and prices.
 
-### Updox Reminders API
-Schedule appointment reminders and broadcast messages across text, voice, and email, with Reminders webhooks. *(Modeled.)*
+- [Updox Plans Pricing](https://apis.io/plans/updox/updox-plans-pricing/)
 
-### Updox Forms API
-Send electronic intake/consent forms and receive completed submissions, with Forms webhooks. *(Modeled.)*
+#### Rate limits (1)
 
-### Updox Account Management API
-Administer accounts, users, and connectivity, including the tiered `Ping` health checks (confirmed) and Account Management webhooks. *(Remaining endpoints modeled.)*
+Published request limits.
 
-## Common Properties
+- [Updox Rate Limits](https://apis.io/rate-limits/updox/updox-rate-limits/)
 
-- [LinkedIn](https://www.linkedin.com/company/updox)
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Updox Finops](https://apis.io/finops/updox/updox-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.updox.com)
 - [Documentation](https://help.updox.com/help/public-api)
-- [API Reference (IO Docs)](https://updoxqa.com/api/newio)
+- [API reference](https://updoxqa.com/api/newio)
 - [Support](https://www.updox.com/support/)
-- [Plans](plans/updox-plans-pricing.yml)
-- [Rate Limits](rate-limits/updox-rate-limits.yml)
-- [Fin Ops](finops/updox-finops.yml)
-- [Blog](https://blog.updox.com)
+- [Blog](https://www.updox.com/blog/)
 
-## Pricing
+## API Evangelist rating
 
-Updox is subscription SaaS priced by practice size and capability mix; there is no public "buy now" list price. A [pricing calculator](https://www.updox.com/tools/updox-pricing-calculator/) and sales contact drive quotes. Reported tiers span a small/solo tier (~$49–$119 per provider/month), mid tiers with capped monthly allowances (faxes, telehealth sessions, reminders, broadcast messages), and a custom enterprise tier for larger practices, health systems, and EHR/pharmacy partners. API/integration access is provisioned to partners on top of a subscription rather than sold as a standalone metered API. See `plans/` and `finops/`.
+**Kin Score 22.6** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## WebSocket Review
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 42.6 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 22.6 |
+| Access clarity | 7.9 |
 
-**Does Updox expose a documented public WebSocket API? No.** Updox's own public API is request/response HTTP POST (the IO API) and its event delivery is via HTTP webhooks — neither is a server-push WebSocket. No AsyncAPI document was authored. See `review.yml`.
+**Agent readiness 15.4** — agent-aware
 
-## Maintainers
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Regulatory alignment 4.7** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/updox/](https://apis.io/providers/updox/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Updox: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/updox/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
